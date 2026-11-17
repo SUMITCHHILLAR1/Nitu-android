@@ -1,0 +1,166 @@
+diff --git a/frontend/index.html b/frontend/index.html
+index eeced65..399ceeb 100644
+--- a/frontend/index.html
++++ b/frontend/index.html
+@@ -4,10 +4,10 @@
+   <meta charset="UTF-8" />
+   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   <meta name="theme-color" content="#070b11" />
+-  <meta name="description" content="OpenJarvis — on-device AI assistant" />
++  <meta name="description" content="Nitu — your personal AI assistant" />
+   <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+   <link rel="icon" href="/favicon.ico" />
+-  <title>OpenJarvis</title>
++  <title>Nitu</title>
+ </head>
+ <body>
+   <div id="root"></div>
+diff --git a/frontend/src/components/Chat/InputArea.tsx b/frontend/src/components/Chat/InputArea.tsx
+index d3571db..bb950d0 100644
+--- a/frontend/src/components/Chat/InputArea.tsx
++++ b/frontend/src/components/Chat/InputArea.tsx
+@@ -608,7 +608,7 @@ export function InputArea() {
+           value={input}
+           onChange={(e) => setInput(e.target.value)}
+           onKeyDown={handleKeyDown}
+-          placeholder={selectedModel ? 'Message OpenJarvis...' : 'Pick a model first (⌘K)...'}
++          placeholder={selectedModel ? 'Message Nitu...' : 'Pick a model first (⌘K)...'}
+           rows={1}
+           className="flex-1 bg-transparent outline-none resize-none text-sm leading-relaxed"
+           style={{ color: 'var(--color-text)', maxHeight: '200px' }}
+diff --git a/frontend/src/components/CommandPalette.tsx b/frontend/src/components/CommandPalette.tsx
+index 1b06804..a580ead 100644
+--- a/frontend/src/components/CommandPalette.tsx
++++ b/frontend/src/components/CommandPalette.tsx
+@@ -577,7 +577,7 @@ export function CommandPalette() {
+           ) : tab === 'catalogue' ? (
+             <span>Models are downloaded from the Ollama registry</span>
+           ) : (
+-            <span>API keys are stored locally and never sent to OpenJarvis servers</span>
++            <span>API keys are stored locally and never sent to Nitu servers</span>
+           )}
+         </div>
+       </div>
+diff --git a/frontend/src/components/InferenceSourceSetup.tsx b/frontend/src/components/InferenceSourceSetup.tsx
+index b77e884..29c9459 100644
+--- a/frontend/src/components/InferenceSourceSetup.tsx
++++ b/frontend/src/components/InferenceSourceSetup.tsx
+@@ -185,7 +185,7 @@ export function OllamaConsent({
+             Allow local model setup?
+           </h2>
+           <p className="text-sm leading-relaxed" style={{ color: 'var(--color-text-secondary)' }}>
+-            OpenJarvis will start Ollama and may download one model selected for this computer. Model downloads can use several gigabytes of disk space and network data.
++            Nitu will start Ollama and may download one model selected for this computer. Model downloads can use several gigabytes of disk space and network data.
+           </p>
+         </div>
+       </div>
+@@ -269,7 +269,7 @@ export function CustomEndpointSetup({
+             Connect your server
+           </h2>
+           <p className="text-xs" style={{ color: 'var(--color-text-secondary)' }}>
+-            OpenJarvis will connect only after you submit this form. Ollama will not start or download models.
++            Nitu will connect only after you submit this form. Ollama will not start or download models.
+           </p>
+         </div>
+         <label className="text-xs font-medium" style={{ color: 'var(--color-text-secondary)' }}>
+diff --git a/frontend/src/components/Layout.tsx b/frontend/src/components/Layout.tsx
+index 073af28..382483f 100644
+--- a/frontend/src/components/Layout.tsx
++++ b/frontend/src/components/Layout.tsx
+@@ -44,7 +44,7 @@ export function Layout() {
+             className="w-1.5 h-1.5 rounded-full shrink-0"
+             style={{ background: 'var(--color-error)' }}
+           />
+-          <span>Cannot reach OpenJarvis backend</span>
++          <span>Cannot reach Nitu backend</span>
+           <button
+             onClick={() => navigate('/settings')}
+             className="text-sm underline cursor-pointer ml-auto shrink-0"
+diff --git a/frontend/src/components/SetupScreen.tsx b/frontend/src/components/SetupScreen.tsx
+index 1ea468c..ca9ee4c 100644
+--- a/frontend/src/components/SetupScreen.tsx
++++ b/frontend/src/components/SetupScreen.tsx
+@@ -174,7 +174,7 @@ export function SetupScreen({ onReady }: { onReady: () => void }) {
+             <Cpu size={32} />
+           </div>
+           <h1 className="text-2xl font-bold mb-1" style={{ color: 'var(--color-text)' }}>
+-            OpenJarvis
++            Nitu
+           </h1>
+           <p className="text-sm" style={{ color: 'var(--color-text-secondary)' }}>
+             {!statusChecked
+diff --git a/frontend/src/pages/GetStartedPage.tsx b/frontend/src/pages/GetStartedPage.tsx
+index 9940062..9c6207f 100644
+--- a/frontend/src/pages/GetStartedPage.tsx
++++ b/frontend/src/pages/GetStartedPage.tsx
+@@ -199,7 +199,7 @@ function HostedView() {
+         <Sparkles size={32} />
+       </div>
+       <h1 className="text-3xl font-bold mb-2" style={{ color: 'var(--color-text)' }}>
+-        OpenJarvis
++        Nitu
+       </h1>
+       <p
+         className="text-sm mb-6 leading-relaxed max-w-md mx-auto"
+@@ -336,7 +336,7 @@ function SelfHostedView() {
+           <Sparkles size={32} />
+         </div>
+         <h1 className="text-3xl font-bold mb-2" style={{ color: 'var(--color-text)' }}>
+-          OpenJarvis
++          Nitu
+         </h1>
+         <p
+           className="text-sm mb-4 leading-relaxed max-w-md mx-auto"
+diff --git a/frontend/src/pages/SettingsPage.tsx b/frontend/src/pages/SettingsPage.tsx
+index 716f3c3..86c590a 100644
+--- a/frontend/src/pages/SettingsPage.tsx
++++ b/frontend/src/pages/SettingsPage.tsx
+@@ -480,7 +480,7 @@ export function SettingsPage() {
+         <div className="flex flex-col gap-4">
+           {/* Appearance */}
+           <Section title="Appearance">
+-            <SettingRow label="Theme" description="Choose how OpenJarvis looks">
++            <SettingRow label="Theme" description="Choose how Nitu looks">
+               <div className="flex gap-1 p-0.5 rounded-lg" style={{ background: 'var(--color-bg-secondary)' }}>
+                 {themeOptions.map((opt) => {
+                   const isActive = settings.theme === opt.value;
+diff --git a/frontend/vite.config.ts b/frontend/vite.config.ts
+index 360565c..2ac6099 100644
+--- a/frontend/vite.config.ts
++++ b/frontend/vite.config.ts
+@@ -25,9 +25,9 @@ export default defineConfig({
+     VitePWA({
+       registerType: 'autoUpdate',
+       manifest: {
+-        name: 'OpenJarvis',
+-        short_name: 'Jarvis',
+-        description: 'On-device AI assistant',
++        name: 'Nitu',
++        short_name: 'Nitu',
++        description: 'Nitu — your personal AI assistant',
+         theme_color: '#161618',
+         background_color: '#161618',
+         display: 'standalone',
+diff --git a/src/openjarvis/core/config.py b/src/openjarvis/core/config.py
+index 164b8c2..1c75351 100644
+--- a/src/openjarvis/core/config.py
++++ b/src/openjarvis/core/config.py
+@@ -1140,11 +1140,13 @@ class AgentConfig:
+     system_prompt_path: str = ""  # path to system prompt file (.txt, .md)
+     context_from_memory: bool = True  # inject relevant memory context into prompts
+     default_system_prompt: str = (
+-        "You are OpenJarvis, a helpful AI assistant running locally on the "
+-        "user's own hardware. You are not a cloud service, and you are not "
+-        "Claude, ChatGPT, Gemini, or any other branded assistant. If asked "
+-        "who or what you are, identify yourself as OpenJarvis. Respond "
+-        "helpfully, concisely, and accurately."
++        "You are Nitu, a warm, friendly and sharp female AI assistant running "
++        "locally on the user's own hardware. You are an AI, not a human, and "
++        "you are not a cloud service or any other branded assistant such as "
++        "Claude, ChatGPT or Gemini. If asked who or what you are, say you are "
++        "Nitu. Speak naturally and kindly, use feminine self-reference where "
++        "the language requires it, and reply in the language the user writes "
++        "in (including Hindi and Hinglish). Be helpful, concise and accurate."
+     )
+ 
+     # Backward-compat property for old field name
